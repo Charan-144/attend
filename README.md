@@ -4,685 +4,335 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10264b">
+  <meta name="description" content="LeapStart employee attendance portal.">
   <title>LeapStart | Employee Attendance</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --teal: #0f4d68;
-      --blue: #3bb3e3;
-      --orange: #f5b95a;
-      --text: #5b6470;
-      --line: #e5eaf0;
-      --success: #15803d;
-      --danger: #dc2626;
+      --navy: #10264b;
+      --blue: #2463eb;
+      --light-blue: #edf4ff;
+      --text: #202b3c;
+      --muted: #657187;
+      --border: #e3e8f0;
+      --white: #ffffff;
+      --background: #f5f7fb;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
-      font-family: "Inter", system-ui, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--background);
       color: var(--text);
-      background: linear-gradient(180deg, #e9f6fc 0, #fff 380px) no-repeat #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
-    nav {
+    header {
+      background: var(--navy);
+      color: white;
+      padding: 19px 6%;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      padding: 14px 4vw;
-      background: #fff;
-      box-shadow: 0 2px 14px rgba(15,77,104,.05);
+      flex-wrap: wrap;
     }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
-      flex-shrink: 0;
-    }
-
-    .logo b {
-      display: block;
-      font-size: 27px;
+    .brand {
+      font-size: 23px;
       font-weight: 800;
-      color: var(--teal);
+      letter-spacing: .4px;
     }
 
-    .logo small {
-      display: block;
-      font-size: 8px;
-      letter-spacing: .25em;
-      color: var(--teal);
-      margin-top: 3px;
+    .brand span {
+      color: #8bb5ff;
     }
 
-    .links {
-      display: flex;
-      gap: 20px;
-      font-size: 14px;
-    }
-
-    .links a {
-      color: var(--teal);
-      text-decoration: none;
-    }
-
-    .btn {
-      font: inherit;
-      font-weight: 600;
-      border: 0;
-      cursor: pointer;
-      color: #fff;
-      background: var(--teal);
-      padding: 12px 22px;
-      border-radius: 999px;
-      text-decoration: none;
-      font-size: 14px;
-      box-shadow: 0 8px 18px rgba(15,77,104,.18);
-    }
-
-    .btn:disabled {
-      opacity: .65;
-      cursor: wait;
-    }
-
-    header {
-      text-align: center;
-      padding: 48px 18px 24px;
-    }
-
-    .badge {
-      display: inline-flex;
-      gap: 8px;
-      align-items: center;
-      border: 1.5px solid #8fd3ee;
-      background: #dff3fb;
-      color: #111;
-      border-radius: 999px;
-      padding: 9px 20px;
-      font-size: 14px;
-    }
-
-    h1 {
-      margin: 26px 0 12px;
-      color: var(--teal);
-      font-weight: 700;
-      font-size: clamp(34px, 7vw, 68px);
-      line-height: 1.12;
-    }
-
-    h1 .gradient {
-      background: linear-gradient(90deg, var(--blue), #b9bf9c 50%, var(--orange));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .sub {
-      font-size: clamp(16px, 2.2vw, 20px);
-      line-height: 1.6;
-      max-width: 760px;
-      margin: 0 auto;
-    }
-
-    .sub em {
-      font-style: normal;
-      color: #bd821d;
-      font-weight: 600;
-    }
-
-    .clock {
-      margin-top: 22px;
-      color: var(--teal);
-    }
-
-    .clock strong {
-      display: block;
-      font-size: 32px;
+    .header-label {
+      font-size: 13px;
+      color: #e0e9fa;
     }
 
     main {
-      max-width: 1200px;
+      width: 100%;
+      max-width: 850px;
+      margin: auto;
+      padding: 48px 20px;
+      flex: 1;
+    }
+
+    .intro {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .eyebrow {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      color: var(--navy);
+      font-size: clamp(29px, 5vw, 42px);
+      margin: 13px 0;
+    }
+
+    .intro p {
+      max-width: 570px;
       margin: 0 auto;
-      padding: 10px 16px 50px;
+      line-height: 1.7;
+      color: var(--muted);
+      font-size: 15px;
     }
 
     .card {
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      padding: 22px;
-      box-shadow: 0 14px 40px rgba(15,77,104,.08);
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 32px;
+      box-shadow: 0 12px 35px rgba(16, 38, 75, .06);
     }
 
-    .bar {
+    .icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
       display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
       align-items: center;
-      justify-content: space-between;
-      margin-bottom: 18px;
+      justify-content: center;
+      margin: 0 auto 18px;
+      background: var(--light-blue);
+      color: var(--blue);
+      font-size: 31px;
     }
 
-    input {
-      font: inherit;
-      padding: 13px 18px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      width: 100%;
-      max-width: 480px;
-      color: var(--teal);
-      outline: none;
+    h2 {
+      text-align: center;
+      color: var(--navy);
+      font-size: 23px;
+      margin: 0 0 12px;
     }
 
-    input:focus { border-color: var(--blue); }
-
-    .hint { font-size: 13px; }
-
-    .wrap { overflow-x: auto; }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 760px;
-    }
-
-    th, td {
-      text-align: left;
-      padding: 14px 12px;
-      border: 1px solid #dce2e8;
+    .card-description {
+      color: var(--muted);
+      text-align: center;
       font-size: 14px;
-      vertical-align: middle;
+      line-height: 1.7;
+      margin: 0 auto 24px;
+      max-width: 520px;
     }
 
-    th {
-      font-size: 12px;
-      letter-spacing: .06em;
-      color: var(--teal);
-      background: #f8fafc;
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 25px 0;
     }
 
-    tbody tr:nth-child(even) { background: #f5f7f9; }
-    td strong { color: var(--teal); }
-
-    .ok {
-      display: inline-block;
-      background: #e6f7ee;
-      color: var(--success);
-      border-radius: 999px;
-      padding: 7px 12px;
-      font-weight: 600;
-      font-size: 12px;
+    .step {
+      background: #f7f9fc;
+      border: 1px solid var(--border);
+      padding: 16px 12px;
+      border-radius: 12px;
+      text-align: center;
     }
 
-    .loc {
-      font-size: 12px;
-      max-width: 280px;
-      overflow-wrap: anywhere;
+    .step-number {
+      width: 29px;
+      height: 29px;
+      border-radius: 50%;
+      background: #dce8ff;
+      color: var(--blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      margin: 0 auto 10px;
     }
 
-    .loc a { color: #087ca7; }
-
-    .err {
-      color: var(--danger);
-      font-size: 12px;
-      line-height: 1.5;
-    }
-
-    #toast {
-      position: fixed;
-      left: 50%;
-      bottom: 24px;
-      transform: translateX(-50%) translateY(30px);
-      background: var(--teal);
-      color: #fff;
-      padding: 16px 22px;
-      border-radius: 16px;
-      box-shadow: 0 14px 40px rgba(0,0,0,.25);
-      opacity: 0;
-      pointer-events: none;
-      transition: .3s;
-      max-width: 92vw;
-      font-size: 14px;
-      line-height: 1.5;
-      z-index: 9999;
-    }
-
-    #toast.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-
-    #toast b {
+    .step strong {
       display: block;
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
+
+    .step small {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .attendance-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 17px 20px;
+      border-radius: 10px;
+      background: var(--blue);
+      color: white;
+      font-weight: 700;
       font-size: 16px;
-      color: var(--orange);
+      text-decoration: none;
+      text-align: center;
+      transition: background .2s, transform .2s;
+    }
+
+    .attendance-button:hover {
+      background: #174fc8;
+      transform: translateY(-1px);
+    }
+
+    .notice {
+      margin-top: 18px;
+      background: #f5f8ff;
+      border: 1px solid #dce7ff;
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 12px;
+      line-height: 1.7;
+      color: #425474;
+    }
+
+    .notice strong {
+      color: var(--navy);
     }
 
     footer {
       text-align: center;
+      padding: 22px 16px;
+      color: var(--muted);
       font-size: 12px;
-      padding: 18px;
+      border-top: 1px solid var(--border);
+      background: white;
     }
 
-    @media (max-width: 860px) {
-      .links { display: none; }
-      nav { padding: 12px 18px; }
-    }
+    @media (max-width: 540px) {
+      header {
+        padding: 17px 20px;
+      }
 
-    @media (max-width: 600px) {
-      header { padding-top: 32px; }
-      .card { padding: 12px; }
-      .bar { align-items: stretch; }
-      input { max-width: 100%; }
-      .hint { text-align: center; }
+      .brand {
+        font-size: 20px;
+      }
+
+      main {
+        padding: 32px 15px;
+      }
+
+      .card {
+        padding: 23px 18px;
+      }
+
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .step {
+        display: flex;
+        align-items: center;
+        text-align: left;
+        gap: 12px;
+        padding: 12px;
+      }
+
+      .step-number {
+        flex-shrink: 0;
+        margin: 0;
+      }
     }
   </style>
 </head>
 
 <body>
-
-  <nav>
-    <a class="logo" href="https://leapstart.in" aria-label="LeapStart School of Technology">
-      <svg width="44" height="48" viewBox="0 0 44 48" aria-hidden="true">
-        <path d="M4 6l18-4 18 4v20c0 10-8 17-18 20C12 43 4 36 4 26z"
-          fill="#fff" stroke="#0f4d68" stroke-width="3"/>
-        <path d="M14 30l12-16M26 14h-8M26 14v8"
-          fill="none" stroke="#0f4d68" stroke-width="3.2"
-          stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M10 12l8-2" stroke="#f5b95a" stroke-width="3" stroke-linecap="round"/>
-      </svg>
-      <span>
-        <b>LEAPSTART</b>
-        <small>SCHOOL OF TECHNOLOGY</small>
-      </span>
-    </a>
-
-    <div class="links">
-      <a href="https://leapstart.in/about">About</a>
-      <a href="https://leapstart.in/programs">Programs</a>
-      <a href="https://leapstart.in/school-of-skills">Skills</a>
-      <a href="https://leapstart.in/admissions">Admissions</a>
-      <a href="https://leapstart.in/faq">FAQ</a>
-    </div>
-
-    <a class="btn" href="https://leapstart.in/contact">Contact us</a>
-  </nav>
-
   <header>
-    <span class="badge">
-      ✨ Employee Attendance · <span id="badgeDate"></span>
-    </span>
-
-    <h1>
-      Mark Your<br>
-      <span class="gradient">Daily</span> Attendance
-    </h1>
-
-    <p class="sub">
-      Find your name, tap <em>Check-in</em> and allow location access.
-      Your <em>date, time and location</em> are submitted for attendance.
-    </p>
-
-    <div class="clock">
-      <strong id="time">--:--:--</strong>
-      <span id="date"></span>
-    </div>
+    <div class="brand">Leap<span>Start</span></div>
+    <div class="header-label">Employee Portal</div>
   </header>
 
   <main>
-    <div class="card">
-      <div class="bar">
-        <input id="q" type="search" placeholder="Search your name..."
-          autocomplete="off" aria-label="Search employee name">
-        <span class="hint">Location permission is required to check in.</span>
+    <section class="intro">
+      <div class="eyebrow">Employee Services</div>
+      <h1>Employee Attendance</h1>
+      <p>
+        Welcome to the LeapStart attendance portal.
+        Record your daily attendance through the official attendance system.
+      </p>
+    </section>
+
+    <section class="card">
+      <div class="icon" aria-hidden="true">✓</div>
+
+      <h2>Mark Your Attendance</h2>
+
+      <p class="card-description">
+        Open the attendance system and sign in using your company Google
+        account. Your registered employee details will be displayed
+        automatically.
+      </p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div>
+            <strong>Sign in</strong>
+            <small>Use your registered company Google account.</small>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">2</div>
+          <div>
+            <strong>Allow location</strong>
+            <small>Enable location permission when requested.</small>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">3</div>
+          <div>
+            <strong>Check in</strong>
+            <small>Submit attendance and confirm the result.</small>
+          </div>
+        </div>
       </div>
 
-      <div class="wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Employee</th>
-              <th>Role</th>
-              <th>Date</th>
-              <th>Time</th>
-              <th>Location</th>
-              <th>Attendance</th>
-            </tr>
-          </thead>
-          <tbody id="rows"></tbody>
-        </table>
+      <a
+        class="attendance-button"
+        href="https://script.google.com/macros/s/AKfycbyQSIir9sTPtzlncX0Thktz8lJcYWu5x1DlThpbAjbIodGXBXxx9_Ap168WXSw4O_tq/exec"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Open Attendance System
+        <span aria-hidden="true">→</span>
+      </a>
+
+      <div class="notice">
+        <strong>Important:</strong> Mark your own attendance using your
+        registered company account. If your account is not recognized or
+        attendance cannot be recorded, contact your administrator.
       </div>
-    </div>
+    </section>
   </main>
 
-  <footer>© 2026 LeapStart School of Technology. All rights reserved.</footer>
-  <div id="toast" role="status" aria-live="polite"></div>
+  <footer>
+    © <span id="year"></span> LeapStart. Employee Attendance Portal.
+  </footer>
 
   <script>
-    // YOUR GOOGLE APPS SCRIPT WEB APP URL
-    var SCRIPT_URL =
-      "https://script.google.com/macros/s/AKfycbyGA87BMSgqzQwsqaih70npcB4uCXA0cMqqtlan_fWxsvA51CUL5ZBKGVm0mPa0RdVp/exec";
-
-    // Replace these sample names with your actual employee list.
-    var people = [
-      ["Aarav Reddy", "Mentor"],
-      ["Priya Sharma", "Operations"],
-      ["Rohit Verma", "Software Engineer"],
-      ["Ananya Iyer", "Data Scientist"],
-      ["Karthik Naidu", "Tech Lead"],
-      ["Sneha Kapoor", "HR Executive"],
-      ["Vikram Singh", "Admissions"],
-      ["Meera Nair", "QA Engineer"],
-      ["Arjun Patel", "Designer"],
-      ["Divya Menon", "Accounts"]
-    ];
-
-    var tableBody = document.getElementById("rows");
-    var searchBox = document.getElementById("q");
-    var toast = document.getElementById("toast");
-
-    function esc(value) {
-      return String(value).replace(/[&<>"']/g, function (c) {
-        return {
-          "&": "&amp;",
-          "<": "&lt;",
-          ">": "&gt;",
-          '"': "&quot;",
-          "'": "&#39;"
-        }[c];
-      });
-    }
-
-    function today() {
-      return new Date().toLocaleDateString("en-CA", {
-        timeZone: "Asia/Kolkata"
-      });
-    }
-
-    var storageKey = "ls_att_" + today();
-    var records = {};
-
-    try {
-      records = JSON.parse(localStorage.getItem(storageKey) || "{}");
-    } catch (error) {
-      records = {};
-    }
-
-    function saveRecords() {
-      try {
-        localStorage.setItem(storageKey, JSON.stringify(records));
-      } catch (error) {
-        console.warn("Could not save local attendance cache.", error);
-      }
-    }
-
-    function updateClock() {
-      var now = new Date();
-      var opts = { timeZone: "Asia/Kolkata" };
-
-      document.getElementById("time").textContent =
-        now.toLocaleTimeString("en-IN", Object.assign({
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-          hour12: true
-        }, opts));
-
-      document.getElementById("date").textContent =
-        now.toLocaleDateString("en-IN", Object.assign({
-          weekday: "long",
-          day: "numeric",
-          month: "long",
-          year: "numeric"
-        }, opts));
-
-      document.getElementById("badgeDate").textContent =
-        now.toLocaleDateString("en-IN", Object.assign({
-          day: "2-digit",
-          month: "short",
-          year: "numeric"
-        }, opts));
-    }
-
-    setInterval(updateClock, 1000);
-    updateClock();
-
-    function locationHTML(record) {
-      var address = esc(record.address || "");
-      var coordinates =
-        Number(record.lat).toFixed(5) + ", " +
-        Number(record.lng).toFixed(5);
-
-      var mapURL =
-        "https://maps.google.com/?q=" +
-        encodeURIComponent(record.lat + "," + record.lng);
-
-      return (
-        (address ? address + "<br>" : "") +
-        "<a target='_blank' rel='noopener noreferrer' href='" +
-        mapURL + "'>" + coordinates + "</a>"
-      );
-    }
-
-    function render() {
-      var query = searchBox.value.trim().toLowerCase();
-      tableBody.innerHTML = "";
-
-      people.forEach(function (person, index) {
-        var name = person[0];
-        var role = person[1];
-
-        if (query && name.toLowerCase().indexOf(query) === -1) {
-          return;
-        }
-
-        var record = records[name];
-        var row = document.createElement("tr");
-
-        var locationContent = record ? locationHTML(record) : "—";
-
-        var attendanceContent = record
-          ? "<span class='ok'>✓ Logged in</span>"
-          : "<button class='btn' data-index='" + index + "'>Check-in</button>";
-
-        row.innerHTML =
-          "<td><strong>" + esc(name) + "</strong></td>" +
-          "<td>" + esc(role) + "</td>" +
-          "<td>" + (record ? esc(record.date) : "—") + "</td>" +
-          "<td>" + (record ? esc(record.time) : "—") + "</td>" +
-          "<td class='loc' id='location-" + index + "'>" +
-          locationContent + "</td>" +
-          "<td>" + attendanceContent + "</td>";
-
-        tableBody.appendChild(row);
-      });
-    }
-
-    function showMessage(title, message) {
-      toast.replaceChildren();
-
-      var heading = document.createElement("b");
-      heading.textContent = title;
-      toast.appendChild(heading);
-
-      var content = document.createElement("div");
-      content.textContent = message;
-      toast.appendChild(content);
-
-      toast.className = "show";
-
-      clearTimeout(showMessage.timer);
-      showMessage.timer = setTimeout(function () {
-        toast.className = "";
-      }, 7000);
-    }
-
-    function getAddress(latitude, longitude) {
-      var controller = new AbortController();
-      var timer = setTimeout(function () {
-        controller.abort();
-      }, 8000);
-
-      var url =
-        "https://nominatim.openstreetmap.org/reverse" +
-        "?format=jsonv2&lat=" +
-        encodeURIComponent(latitude) +
-        "&lon=" +
-        encodeURIComponent(longitude);
-
-      return fetch(url, { signal: controller.signal })
-        .then(function (response) {
-          if (!response.ok) {
-            throw new Error("Address lookup failed.");
-          }
-          return response.json();
-        })
-        .then(function (data) {
-          return data.display_name || "";
-        })
-        .catch(function () {
-          // Attendance can still be submitted with coordinates.
-          return "";
-        })
-        .finally(function () {
-          clearTimeout(timer);
-        });
-    }
-
-    function submitAttendance(person, position, button, locationCell) {
-      var name = person[0];
-      var role = person[1];
-      var coords = position.coords;
-
-      var latitude = coords.latitude;
-      var longitude = coords.longitude;
-      var accuracy = Math.round(coords.accuracy);
-
-      button.textContent = "Getting address...";
-
-      getAddress(latitude, longitude)
-        .then(function (address) {
-          button.textContent = "Recording...";
-
-          var payload = {
-            name: name,
-            role: role,
-            lat: latitude,
-            lng: longitude,
-            accuracy: accuracy,
-            address: address
-          };
-
-          return fetch(SCRIPT_URL, {
-            method: "POST",
-            headers: {
-              "Content-Type": "text/plain;charset=utf-8"
-            },
-            body: JSON.stringify(payload)
-          }).then(function (response) {
-            if (!response.ok) {
-              throw new Error("Server returned HTTP " + response.status);
-            }
-            return response.json();
-          }).then(function (result) {
-            if (!result.ok) {
-              throw new Error(result.error || "Attendance was not saved.");
-            }
-
-            // CORRECTED: save the actual address with the attendance record.
-            records[name] = {
-              date: result.date,
-              time: result.time,
-              lat: latitude,
-              lng: longitude,
-              accuracy: accuracy,
-              address: address
-            };
-
-            saveRecords();
-            render();
-
-            showMessage(
-              result.duplicate ? "Already checked in today" : "Attendance recorded",
-              name + " · " + result.date + " · " + result.time
-            );
-          });
-        })
-        .catch(function (error) {
-          console.error("Attendance submission failed:", error);
-
-          button.disabled = false;
-          button.textContent = "Check-in";
-
-          locationCell.textContent =
-            "Attendance could not be confirmed. Check Apps Script deployment and Executions, then retry.";
-          locationCell.className = "loc err";
-        });
-    }
-
-    tableBody.addEventListener("click", function (event) {
-      var button = event.target.closest("button");
-      if (!button) return;
-
-      var index = Number(button.dataset.index);
-      var person = people[index];
-      var locationCell = document.getElementById("location-" + index);
-
-      if (!SCRIPT_URL || SCRIPT_URL.indexOf("https://script.google.com/") !== 0) {
-        locationCell.textContent = "Google Apps Script URL is not configured.";
-        locationCell.className = "loc err";
-        return;
-      }
-
-      if (!navigator.geolocation) {
-        locationCell.textContent = "Geolocation is not supported by this browser.";
-        locationCell.className = "loc err";
-        return;
-      }
-
-      button.disabled = true;
-      button.textContent = "Requesting location...";
-      locationCell.textContent = "Waiting for location permission...";
-
-      navigator.geolocation.getCurrentPosition(
-        function (position) {
-          submitAttendance(person, position, button, locationCell);
-        },
-        function (error) {
-          button.disabled = false;
-          button.textContent = "Check-in";
-
-          var message = "Could not get your location. Please try again.";
-          if (error.code === 1) {
-            message = "Location access denied. Allow location access in your browser settings.";
-          } else if (error.code === 2) {
-            message = "Your location could not be determined. Check device location settings.";
-          } else if (error.code === 3) {
-            message = "Location request timed out. Please try again.";
-          }
-
-          locationCell.textContent = message;
-          locationCell.className = "loc err";
-        },
-        {
-          enableHighAccuracy: true,
-          timeout: 20000,
-          maximumAge: 0
-        }
-      );
-    });
-
-    searchBox.addEventListener("input", render);
-    render();
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
-
 </body>
 </html>
